@@ -1,18 +1,8 @@
 class Solution {
     public int solution(int a, int b) {
-        int answer = 0;
-        String a_Str = Integer.toString(a);
-        String b_Str = Integer.toString(b);
+        int ab = Integer.parseInt(Integer.toString(a) + Integer.toString(b));
+        int ba = Integer.parseInt(Integer.toString(b) + Integer.toString(a));
 
-        String ab = a_Str + b_Str;
-        String ba = b_Str + a_Str;
-
-        if (Integer.parseInt(ab) < Integer.parseInt(ba)) {
-            answer = Integer.parseInt(ba);
-        } else {
-            answer = Integer.parseInt(ab);
-        }
-
-        return answer;
+        return ab >= ba ? ab : ba;
     }
 }
