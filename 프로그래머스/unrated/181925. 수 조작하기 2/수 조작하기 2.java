@@ -1,16 +1,17 @@
 class Solution {
     public String solution(int[] numLog) {
-        String answer = "";
+        StringBuffer stringBuffer = new StringBuffer();
+
         for (int i = 0; i < numLog.length -1; i++) {
             switch (numLog[i + 1] - numLog[i]) {
-                case 1: answer += "w"; break;
-                case -1: answer += "s"; break;
-                case 10 : answer += "d"; break;
-                case -10: answer += "a"; break;
+                case 1: stringBuffer.append("w"); break;
+                case -1: stringBuffer.append("s"); break;
+                case 10 : stringBuffer.append("d"); break;
+                case -10: stringBuffer.append("a"); break;
                 default:
             }
         }
-        
-        return answer;
+
+        return stringBuffer.toString();
     }
 }
