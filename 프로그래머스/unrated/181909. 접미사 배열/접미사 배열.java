@@ -1,23 +1,19 @@
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 class Solution {
     public String[] solution(String my_string) {
         int length = my_string.length();
+        String[] answer = new String[length];
         List<String> list = new ArrayList<>();
 
         for (int i = 0; i < length; i++) {
-            list.add(my_string.substring(i));
+            answer[i] = my_string.substring(i);
         }
 
-        Collections.sort(list);
-        String[] answer = new String[length];
-        
-        for (int i = 0; i < length; i++) {
-            answer[i] = list.get(i);    
-        }
-        
+        Arrays.sort(answer);
+
         return answer;
     }
 }
