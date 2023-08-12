@@ -14,7 +14,14 @@ public class Main {
             points[i].y = scanner.nextInt();
         }
 
-        Arrays.sort(points, new PointComparator());
+        Arrays.sort(points, (p1, p2) -> {
+            if (p1.x == p2.x) {
+                return p1.y - p2.y;
+            } else {
+                return p1.x - p2.x;
+            }
+        });
+
         for (Point point : points) {
             System.out.println(point.x + " " + point.y);
         }
@@ -25,15 +32,6 @@ public class Main {
         int y;
     }
 
-    static class PointComparator implements Comparator<Point> {
-        @Override
-        public int compare(Point o1, Point o2) {
-            if (o1.x == o2.x) {
-                return o1.y - o2.y;
-            } else {
-                return o1.x - o2.x;
-            }
-        }
-    }
+
 }
 
