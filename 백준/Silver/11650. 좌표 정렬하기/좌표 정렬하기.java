@@ -14,23 +14,26 @@ public class Main {
             points[i].y = scanner.nextInt();
         }
 
-        Arrays.sort(points);
+        Arrays.sort(points, new PointComparator());
         for (Point point : points) {
             System.out.println(point.x + " " + point.y);
         }
     }
 
-    static class Point implements Comparable<Point> {
+    static class Point {
         int x;
         int y;
+    }
 
+    static class PointComparator implements Comparator<Point> {
         @Override
-        public int compareTo(Point o) {
-            if (this.x == o.x) {
-                return this.y - o.y;
+        public int compare(Point o1, Point o2) {
+            if (o1.x == o2.x) {
+                return o1.y - o2.y;
             } else {
-                return this.x - o.x;
+                return o1.x - o2.x;
             }
         }
     }
 }
+
