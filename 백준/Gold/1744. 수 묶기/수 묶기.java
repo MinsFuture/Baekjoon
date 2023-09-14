@@ -6,7 +6,7 @@ public class Main {
         int sum = 0;
         int n = sc.nextInt();
         int[] ary = new int[n];
-        int negativeNum = 0, zeroNum = 0, oneNum = 0, positiveNum = 0;
+        int negativeNum = 0, zeroNum = 0, positiveNum = 0;
 
         for (int i = 0; i < n; i++) {
             ary[i] = sc.nextInt();
@@ -14,11 +14,9 @@ public class Main {
                 negativeNum++;
             } else if (ary[i] == 0) {
                 zeroNum++;
-            } else if (ary[i] == 1) {
-                oneNum++;
-            } else {
+            } else if (ary[i] > 1) {
                 positiveNum++;
-            }
+            } 
         }
 
         Arrays.sort(ary);
