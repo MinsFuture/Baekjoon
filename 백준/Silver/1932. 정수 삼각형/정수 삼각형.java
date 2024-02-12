@@ -9,7 +9,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
-        int[][] ary = new int[n+1][n+1];
+        int[][] ary = new int[n][n];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
@@ -18,11 +18,13 @@ public class Main {
             }
         }
 
-        int[][] dp = new int[n+1][n+1];
+        int[][] dp = new int[n][n];
         dp[0][0] = ary[0][0];
-        dp[1][0] = dp[0][0] + ary[1][0];
-        dp[1][1] = dp[0][0] + ary[1][1];
-        
+        if (n > 1) {
+            dp[1][0] = dp[0][0] + ary[1][0];
+            dp[1][1] = dp[0][0] + ary[1][1];
+        }
+
         for (int i = 2; i < n; i++) {
             for (int j = 0; j < i+1; j++) {
                 if (j == 0) {
@@ -41,6 +43,6 @@ public class Main {
             }
         }
 
-        System.out.println(max);
+        System.out.print(max);
     }
 }
