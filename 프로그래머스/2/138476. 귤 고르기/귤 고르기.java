@@ -5,14 +5,13 @@ class Solution {
         int answer = 0;
         Map<Integer, Integer> map = new HashMap<>();
         List<Integer> list = new ArrayList<>();
+        
         for(int i = 0; i<tangerine.length; i++){
             map.put(tangerine[i], map.getOrDefault(tangerine[i], 0) + 1);
         }
         
-        tangerine = Arrays.stream(tangerine).distinct().toArray();
-        
-        for(int i = 0; i<tangerine.length; i++){
-            list.add(map.get(tangerine[i]));
+        for(int a : map.keySet()){
+            list.add(map.get(a));
         }
         
         Collections.sort(list, Comparator.reverseOrder());
