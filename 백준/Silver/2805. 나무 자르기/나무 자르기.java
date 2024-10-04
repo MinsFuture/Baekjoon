@@ -30,7 +30,7 @@ public class Main {
 
         // answer 이 m 보다 작다 -> mid가 너무 높다 -> high를 줄임
         // answer 이 m 보다 크다 -> mid가 너무 낮다 -> low를 올림
-        while(low <= high){
+        while(low < high){
             mid = (low + high) / 2;
             answer = 0;
 
@@ -41,18 +41,13 @@ public class Main {
                 }
                 answer += length;
             }
-            if(answer == m || mid == low || mid == high){
-                return mid;
-            }
-
             if(answer < m){
                 high = mid;
-            }
-
-            if(answer > m){
-                low = mid;
+            } else{
+                low = mid + 1;
             }
         }
-        return mid;
+
+        return low -1;
     }
 }
