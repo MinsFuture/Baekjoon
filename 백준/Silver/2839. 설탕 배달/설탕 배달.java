@@ -1,35 +1,42 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int num = scanner.nextInt();
-        int n = num / 5;
-        int quotient, remain, temp;
-        int sum = 0;
-        int min = Integer.MAX_VALUE;
 
-        for (int i = 0; i <= n; i++) {
-            sum = i;
-            temp = num;
-            temp = temp - 5*i;
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
 
-            quotient = temp / 3;
-            remain = temp - quotient * 3;
-            if (remain == 0) {
-                sum += quotient;
-                if (min > sum) {
-                    min = sum;
-                }
+        int[] dp = new int[N + 3];
+        dp[1] = -1;
+        dp[2] = -1;
+        dp[3] = 1;
+        dp[4] = -1;
+        dp[5] = 1;
+
+        for (int i = 6; i <= N; i++) {
+            int a = dp[i-3];
+            int b = dp[i-5];
+
+            if(a == -1 && b == -1){
+                dp[i] = -1;
+                continue;
             }
+
+            if(a == -1){
+                dp[i] = b + 1;
+                continue;
+            }
+
+            if(b == -1){
+                dp[i] = a + 1;
+                continue;
+            }
+
+            dp[i] = Math.min(a, b) + 1;
         }
 
-        if (min == Integer.MAX_VALUE) {
-            System.out.println(-1);
-        } else {
-            System.out.println(min);
-        }
-
+        System.out.println(dp[N]);
 
     }
 }
