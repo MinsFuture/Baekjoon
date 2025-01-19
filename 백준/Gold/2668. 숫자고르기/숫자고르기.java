@@ -1,59 +1,46 @@
-import java.io.*;
 import java.util.*;
 
 public class Main {
+    static boolean[] visited;
+    static int n;
+    static int[] ary;
+    static List<Integer> list;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int []ary = new int[n+1];
-        Map<Integer, Integer> map = new HashMap<>();
-        boolean[] visited = new boolean[n+1];
-        List<Integer> answer = new ArrayList<>();
-        Set<Integer> up = new HashSet<>();
-        Set<Integer> down = new HashSet<>();
+        n = sc.nextInt();
+        visited = new boolean[n+1];
+        list = new ArrayList<>();
 
-
-        for(int i = 1; i<=n; i++){
+        ary = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
             ary[i] = sc.nextInt();
-            if(i == ary[i]){
-                visited[i] = true;
-                answer.add(i);
-            }
-            map.put(i, ary[i]);
         }
 
-        for(int i = 1; i<=n; i++){
-            int key = i;
-            List<Integer> temp = new ArrayList<>();
-            up = new HashSet<>();
-            down = new HashSet<>();
-
-            while(!visited[key]){
-                up.add(key);
-                temp.add(key);
-
-                visited[key] = true;
-                key = map.get(key);
-                down.add(key);
-            }
-
-            if(up.equals(down)){
-                answer.addAll(temp);
-            } else{
-                for (Integer integer : temp) {
-                    visited[integer] = false;
-                }
-            }
-
+        for (int i = 1; i <= n; i++) {
+            visited[i] = true;
+            dfs(i, i);
+            visited[i] = false;
         }
 
-        System.out.println(answer.size());
-        Collections.sort(answer);
-        for(int i = 0; i<answer.size(); i++){
-            System.out.println(answer.get(i));
+        Collections.sort(list);
+        System.out.println(list.size());
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
         }
     }
 
+    private static void dfs(int start, int target) {
+        if (ary[start] == target) {
+            list.add(target);
+            return;
+        }
+
+        if (!visited[ary[start]]) {
+            visited[ary[start]] = true;
+            dfs(ary[start], target);
+            visited[ary[start]] = false;
+        }
+    }
 }
 
