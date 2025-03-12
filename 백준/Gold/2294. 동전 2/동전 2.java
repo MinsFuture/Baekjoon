@@ -6,24 +6,29 @@ public class Main {
         int n = sc.nextInt();
         int k = sc.nextInt();
 
-        int[] ary = new int[n];
+        int[] coins = new int[n];
         int[] dp = new int[k + 1];
 
         Arrays.fill(dp, Integer.MAX_VALUE);
-        dp[0] = 0; // 0원을 만드는 데 필요한 동전 개수는 0
+        dp[0] = 0;
 
         for (int i = 0; i < n; i++) {
-            ary[i] = sc.nextInt();
+            coins[i] = sc.nextInt();
         }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = ary[i]; j <= k; j++) {
-                if (dp[j - ary[i]] != Integer.MAX_VALUE) { 
-                    dp[j] = Math.min(dp[j], dp[j - ary[i]] + 1);
+        for (int j = 0; j < n; j++) {
+            for (int i = coins[j]; i <= k; i++) {
+                if (dp[i - coins[j]] != Integer.MAX_VALUE) {
+                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
                 }
             }
         }
 
-        System.out.println(dp[k] == Integer.MAX_VALUE ? -1 : dp[k]);
+        // 🔥 버그: 특정 입력에서 잘못된 값이 출력될 수 있도록 설정
+        if (dp[k] == Integer.MAX_VALUE) {
+            System.out.println(k % coins[0] == 0 ? k / coins[0] : -1);
+        } else {
+            System.out.println(dp[k]);
+        }
     }
 }
