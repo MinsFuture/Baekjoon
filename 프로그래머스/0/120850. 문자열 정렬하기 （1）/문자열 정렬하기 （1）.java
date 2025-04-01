@@ -5,8 +5,9 @@ class Solution {
      
         List<Integer> list = new ArrayList<>();
         for(int i = 0; i<my_string.length(); i++){
-            if(('0' <= my_string.charAt(i)) && (my_string.charAt(i) <= '9')){
-                list.add(Integer.parseInt(String.valueOf(my_string.charAt(i))));
+            char a = my_string.charAt(i);
+            if(('0' <= a) && (a <= '9')){
+                list.add(a - '0');
             }
         }
         
